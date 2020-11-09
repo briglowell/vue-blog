@@ -8,7 +8,7 @@
     <div class="col-6 offset-3">
       <form class="form-group" @submit.prevent="createBlog">
         <input type="text"
-               class="form-control border"
+               class="form-control"
                aria-describedby="helpId"
                placeholder="Blog Title"
                v-model="state.newBlog.title"
@@ -19,13 +19,13 @@
                placeholder="Blog Body"
                v-model="state.newBlog.body"
         >
-        <button type="submit" class="btn btn-info mt-3">
-          New Blog
+        <button type="submit" class="btn btn-info btn-block mt-2">
+          Add New Blog
         </button>
       </form>
     </div>
     <h1>My Blogs:</h1>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center blogs-height overflow-auto hide-scroll">
       <blog-component v-for="blog in myBlogs" :key="blog._id" :blog-prop="blog" />
     </div>
   </div>
@@ -67,5 +67,8 @@ img {
 }
 .full-page{
   height: 90vh;
+}
+.blogs-height{
+  height: 45vh;
 }
 </style>

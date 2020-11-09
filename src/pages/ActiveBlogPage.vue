@@ -1,35 +1,38 @@
 <template>
-  <div class="container-fluid full-page">
+  <div class="container-fluid full-page overflow-auto hide-scroll">
     <div class="row justify-content-center">
       <div class="active-blog offset-2 col shadow-lg text-center my-3 bg-dark-fade text-white">
         <img :src="activeBlog.creator.picture" alt="" class="img-fluid mt-4" v-if="activeBlog.creator">
         <h1>{{ activeBlog.title }}</h1>
-        <h5>By: {{ activeBlog.creatorEmail }}</h5>
+        <h5 v-if="activeBlog.creator">
+          By: {{ activeBlog.creator.name }}
+        </h5>
         <div class="col-12">
-          <div class="col-12">
-            <p class="float-left my-2">
+          <div class="col-10 offset-1 text-left">
+            <p class="my-4">
               {{ activeBlog.body }}
             </p>
           </div>
-          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" v-if="activeBlog.creatorEmail === profile.email">
+          <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal" v-if="activeBlog.creatorEmail === profile.email">
             edit blog
           </button>
-          <button class=" col-12 btn btn-danger my-2" @click="deleteBlog" v-if="activeBlog.creatorEmail === profile.email">
+          <button class="btn btn-danger" @click="deleteBlog" v-if="activeBlog.creatorEmail === profile.email">
             delete
           </button>
-          <form action=""></form>
-          <form class="form-group" @submit.prevent="createComment">
-            <input type="text"
-                   class="form-control"
-                   aria-describedby="helpId"
-                   placeholder="Comment"
-                   v-model="state.newComment.body"
-            >
-            <button type="submit" class="btn btn-info btn-block">
-              comment
-            </button>
-          </form>
-          <div class="comment-height overflow-auto ">
+          <div class="row">
+            <form class="form-group d-flex col-12 mt-4" @submit.prevent="createComment">
+              <input type="text"
+                     class="form-control"
+                     aria-describedby="helpId"
+                     placeholder="Comment"
+                     v-model="state.newComment.body"
+              >
+              <button type="submit" class="btn btn-info ml-1 col-2">
+                add comment
+              </button>
+            </form>
+          </div>
+          <div class="comment-height overflow-auto hide-scroll">
             <comment-component v-for="comment in comments" :key="comment" :comment-prop="comment" />
           </div>
         </div>
@@ -58,13 +61,13 @@
         <div class="modal-body">
           <form class="form-group" type="onsubmit">
             <input type="text"
-                   class="form-control border border-dark bg-dark-fade text-white"
+                   class="form-control border border-dark bg-dark-fade"
                    aria-describedby="helpId"
                    placeholder="Blog Title"
                    v-model="state.updateBlog.title"
             >
             <input type="text"
-                   class="form-control border border-dark bg-dark-fade text-white"
+                   class="form-control border border-dark bg-dark-fade"
                    aria-describedby="helpId"
                    placeholder="Blog Body"
                    v-model="state.updateBlog.body"
@@ -132,17 +135,27 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  max-width: 100px;
+  max-height: 4500px;
 }
 .full-page{
   height: 90vh;
 }
 
 .comment-height{
-  height: 45vh;
+  max-height: 40vh;
 }
 
 .bg-dark-fade{
   background-color: rgba(59, 59, 59, 0.473);
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 </style>

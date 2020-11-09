@@ -1,12 +1,12 @@
 <template>
-  <div class="comment-component col-12 border shadow-lg">
+  <div class="comment-component col-12 border shadow-lg rounded my-2">
     <button class="text-danger float-right close" @click="deleteComment()" v-if="comment.creatorEmail === profile.email">
       X
     </button>
     <h6>{{ comment.creatorEmail }}</h6>
     <form class="form-group" @submit.prevent="editComment" v-if="comment.creatorEmail === profile.email">
       <input type="text"
-             class="form-control border border-0 bg-transparent text-white"
+             class="form-control border border-0 bg-transparent text-white text-center"
              aria-describedby="helpId"
              placeholder="Comment"
              v-model="state.updateComment.body"
