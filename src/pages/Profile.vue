@@ -1,12 +1,14 @@
 <template>
   <div class="about text-center full-page container-fluid">
-    <h1>Welcome {{ profile.name }}</h1>
+    <h1 class="text-light">
+      {{ profile.name }}
+    </h1>
     <img class="rounded" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
     <div class="col-6 offset-3">
       <form class="form-group" @submit.prevent="createBlog">
         <input type="text"
-               class="form-control"
+               class="form-control border"
                aria-describedby="helpId"
                placeholder="Blog Title"
                v-model="state.newBlog.title"

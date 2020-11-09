@@ -2,7 +2,7 @@
   <div class="container-fluid full-page">
     <div class="row justify-content-center">
       <div class="active-blog offset-2 col shadow-lg text-center my-3 bg-dark-fade text-white">
-        <!-- <img :src="activeBlog.creator.picture" alt="" class="img-fluid mt-4"> -->
+        <img :src="activeBlog.creator.picture" alt="" class="img-fluid mt-4" v-if="activeBlog.creator">
         <h1>{{ activeBlog.title }}</h1>
         <h5>By: {{ activeBlog.creatorEmail }}</h5>
         <div class="col-12">
@@ -103,9 +103,9 @@ export default {
       },
       updateBlog: {}
     })
-    onMounted(() => {
-      blogService.getActiveBlog(route.params.blogId)
-      blogService.getComments(route.params.blogId)
+    onMounted(async() => {
+      await blogService.getActiveBlog(route.params.blogId)
+      await blogService.getComments(route.params.blogId)
     })
     return {
       state,

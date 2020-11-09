@@ -1,12 +1,13 @@
 <template>
-  <div class="blog-component card bg-dark text-light col-2 offset-1 shadow-lg pt-3 my-2" v-if="blog.creator">
-    <router-link :to="{name: 'ActiveBlog' , params: {blogId : blog._id}}">
-      <img :src="blog.creator.picture" alt="//placehold.it/200" class="img-fluid">
+  <div class="blog-component bg-dark text-light col-3 shadow-lg pt-3 my-2 m-5" v-if="blog.creator">
+    <router-link :to="{name: 'ActiveBlog' , params: {blogId : blog._id}}" class="text-white d-flex">
+      <img :src="blog.creator.picture" alt="//placehold.it/200" class="img-fluid img-size mb-3">
+      <div class="ml-3">
+        <h2>{{ blog.title }}</h2>
+        <h6>{{ blog.creator.name }}</h6>
+      </div>
     </router-link>
-    <h1>{{ blog.title }}</h1>
-    <h5>{{ blog.creator.name }}</h5>
   </div>
-  <div class="col-1"></div>
 </template>
 
 <script>
@@ -31,5 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.img-size{
+  height: 150px
+}
 </style>

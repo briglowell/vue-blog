@@ -6,7 +6,7 @@
     <h6>{{ comment.creatorEmail }}</h6>
     <form class="form-group" @submit.prevent="editComment" v-if="comment.creatorEmail === profile.email">
       <input type="text"
-             class="form-control border border-dark bg-dark-fade text-white"
+             class="form-control border border-0 bg-transparent text-white"
              aria-describedby="helpId"
              placeholder="Comment"
              v-model="state.updateComment.body"

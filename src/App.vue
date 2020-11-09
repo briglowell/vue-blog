@@ -30,4 +30,7 @@ export default {
   background-image: url("https://i.ytimg.com/vi/lite9eQ8T9k/maxresdefault.jpg");
   background-size: cover;
 }
+img {
+  max-width: 100px;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="home container-fluid">
-    <h1 class="text-center">
-      Blogs
+  <div class="home container-fluid overflow-auto full-page">
+    <h1 class="text-center text-white display-1">
+      Shred Blogs
     </h1>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
       <blog-component v-for="blog in allBlogs" :key="blog._id" :blog-prop="blog" />
     </div>
   </div>
@@ -28,3 +28,13 @@ export default {
   }
 }
 </script>
+
+<style>
+img {
+  max-width: 100px;
+}
+.full-page{
+  height: 90vh;
+  padding-bottom: 10px;
+}
+</style>
